@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[注意事项]]></title>
+      <url>http://mangohouse.top/2017/02/18/css%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/</url>
+      <content type="html"><![CDATA[<p>页面内容较多注意重复命名类名</p>
+<p>vue v-link 指令已换成<router-link></router-link><br>router.go() 换为 router.push()<br>node-sass安装失败最简单的办法就是用cnpm安装。。。</p>
+<p>vue热加载失效<br>如果你用了webstorm的话，它默认将内容保存在临时文件中<br>把settings=&gt;appearance=&gt;system setting=&gt;synchornization=&gt;最后一项勾去掉，就可以了。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 注意事项 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 注意事项 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[canvas小球动画]]></title>
+      <url>http://mangohouse.top/2017/02/14/%E5%B0%8F%E7%90%83%E5%8A%A8%E7%94%BB/</url>
+      <content type="html"><![CDATA[<p>用canvas写一个小球动画效果<br>主要思路是新建一个小球数组balls，用来存放小球，绘制小球小球的起始位置还有速度随机，然后将绘制好的小球存入小球数组，然后遍历小球数组绘制小球<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">		canvas &#123;</span></span><br><span class="line"><span class="undefined">			border: 1px dotted #FF751A;</span></span><br><span class="line"><span class="undefined">		&#125;</span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">style</span>=<span class="string">"background: #000;"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"canvas"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"200"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">		<span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span><br><span class="line">		<span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">		<span class="keyword">var</span> balls = []; <span class="comment">//小球池存放小球</span></span><br><span class="line">		<span class="keyword">var</span> ballCount = <span class="number">100</span>; <span class="comment">//设置小球数量</span></span><br><span class="line"><span class="comment">//		var ballObj = &#123;</span></span><br><span class="line"><span class="comment">//			ball</span></span><br><span class="line"><span class="comment">//		&#125;</span></span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">Ball</span>(<span class="params">x, y, vx, vy, radius, color</span>) </span>&#123; <span class="comment">//初始化小球</span></span><br><span class="line">			<span class="keyword">this</span>.x = getRandomNum(<span class="number">0</span>,<span class="number">200</span>); <span class="comment">//随机设置小球位置</span></span><br><span class="line">			<span class="keyword">this</span>.y = getRandomNum(<span class="number">0</span>,<span class="number">200</span>);</span><br><span class="line">			<span class="keyword">this</span>.vx = getRandomNum(<span class="number">0</span>,<span class="number">5</span>);<span class="comment">//随机设置小球速度</span></span><br><span class="line">			<span class="keyword">this</span>.vy = getRandomNum(<span class="number">0</span>,<span class="number">5</span>);</span><br><span class="line">			<span class="keyword">this</span>.radius = getRandomNum(<span class="number">5</span>,<span class="number">10</span>);</span><br><span class="line">			<span class="keyword">this</span>.color = getColor();</span><br><span class="line">		&#125;</span><br><span class="line">		Ball.prototype.draw = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">//绘画小球函数</span></span><br><span class="line">			ctx.save();</span><br><span class="line">			ctx.beginPath();</span><br><span class="line">			ctx.fillStyle = <span class="string">"#00CC7D"</span>;</span><br><span class="line">			ctx.lineWidth = <span class="number">5</span>;</span><br><span class="line">			ctx.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.radius, <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">2</span>, <span class="literal">true</span>);</span><br><span class="line">			ctx.closePath();</span><br><span class="line">			ctx.fill();</span><br><span class="line">			ctx.restore();</span><br><span class="line">		&#125;</span><br><span class="line">		Ball.prototype.update = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//小球变化函数还有触达边界处理</span></span><br><span class="line">			<span class="keyword">this</span>.x += <span class="keyword">this</span>.vx;</span><br><span class="line">			<span class="keyword">this</span>.y += <span class="keyword">this</span>.vy;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span>(<span class="keyword">this</span>.y + <span class="keyword">this</span>.vy &gt; canvas.height || <span class="keyword">this</span>.y + <span class="keyword">this</span>.vy &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">this</span>.vy = -<span class="keyword">this</span>.vy;</span><br><span class="line">				<span class="comment">//				ball.y = 0;</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(<span class="keyword">this</span>.x + <span class="keyword">this</span>.vx &gt; canvas.width || <span class="keyword">this</span>.x + <span class="keyword">this</span>.vx &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">this</span>.vx = -<span class="keyword">this</span>.vx;</span><br><span class="line">				<span class="comment">//				ball.x = 0;</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123; <span class="comment">//初始化小球数量</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; ballCount; i++) &#123;</span><br><span class="line">				balls.push(<span class="keyword">new</span> Ball());</span><br><span class="line">			&#125;</span><br><span class="line">			drawBall()</span><br><span class="line">		&#125;</span><br><span class="line">		init()</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">drawBall</span>(<span class="params"></span>) </span>&#123; <span class="comment">//遍历小球池绘制小球</span></span><br><span class="line">			clear();</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; ballCount; i++) &#123;</span><br><span class="line">				balls[i].draw();</span><br><span class="line">				balls[i].update();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">window</span>.requestAnimationFrame(drawBall); <span class="comment">//动画函数也可用（setInterval(draw,60)）</span></span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">//		setInterval(draw,60)</span></span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">getRandomNum</span>(<span class="params">x, y</span>) </span>&#123; <span class="comment">//获取随机数</span></span><br><span class="line">			<span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * (y - x) + x)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">getColor</span>(<span class="params"></span>) </span>&#123; <span class="comment">//随机获取颜色</span></span><br><span class="line">			<span class="keyword">return</span> <span class="string">"rgb("</span> + getRandomNum(<span class="number">0</span>, <span class="number">255</span>) + <span class="string">","</span> + getRandomNum(<span class="number">0</span>, <span class="number">255</span>) + <span class="string">","</span> + getRandomNum(<span class="number">0</span>, <span class="number">255</span>) + <span class="string">")"</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">clear</span>(<span class="params"></span>) </span>&#123; <span class="comment">//清除画板</span></span><br><span class="line">			ctx.fillStyle = <span class="string">'rgba(0,0,0,.3)'</span>;</span><br><span class="line">			ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> canvas </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> canvas </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[2017给自己的规划]]></title>
+      <url>http://mangohouse.top/2017/02/13/2017%E8%AE%A1%E5%88%92/</url>
+      <content type="html"><![CDATA[<hr>
+<h1>努力提升自己，好好学习，认真工作，然后赚钱买房</h1>
+
+
+
+]]></content>
+      
+        <categories>
+            
+            <category> 自我规划 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 近期规划 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[基于vue-cli，vue+vuex+elementUI+webpack实践.md]]></title>
+      <url>http://mangohouse.top/2017/02/13/%E5%9F%BA%E4%BA%8Evue-cli%EF%BC%8Cvue+vuex+elementUI+webpack%E5%AE%9E%E8%B7%B5/</url>
+      <content type="html"><![CDATA[<p>项目地址：<a href="https://github.com/mango23/vuepro" target="_blank" rel="noopener">https://github.com/mango23/vuepro</a><br>本项目是基于vue-cli进行修改推展的一个vue工程构建demo</p>
+<h2 id="在原基础上加上了vuex，mock配置ajax虚拟数据，引入了饿了么的elementUI组件库，以及一些基本的vue实例"><a href="#在原基础上加上了vuex，mock配置ajax虚拟数据，引入了饿了么的elementUI组件库，以及一些基本的vue实例" class="headerlink" title="在原基础上加上了vuex，mock配置ajax虚拟数据，引入了饿了么的elementUI组件库，以及一些基本的vue实例"></a>在原基础上加上了vuex，mock配置ajax虚拟数据，引入了饿了么的elementUI组件库，以及一些基本的vue实例</h2>]]></content>
+      
+        <categories>
+            
+            <category> vue,vuex </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> vue,vuex </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[几个疑惑]]></title>
+      <url>http://mangohouse.top/2016/12/03/sometroubel/</url>
+      <content type="html"><![CDATA[<p>通过split串成的数组是真数组吗<br>通过isArray()检测是的<br>但是不能使用forEach进行遍历<br>   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tobinary</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num.toString(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getindex1</span>(<span class="params">arr,item</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myindex = []</span><br><span class="line">    arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">val,i</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (item === val)</span><br><span class="line">            myindex.push(i)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">if</span> (myindex.length &gt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> myindex</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (myindex.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (myindex.length == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> myindex[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">o</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(o) === <span class="string">'[object Array]'</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(o))</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> mn = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>]</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"1: "</span>+getindex1(mn,<span class="number">1</span>)) <span class="comment">//返回所有1的索引</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"1: "</span>+getindex1(nn,<span class="number">1</span>)) <span class="comment">//返回-1</span></span><br></pre></td></tr></table></figure></p>
+]]></content>
+      
+        <categories>
+            
+            <category> trouble </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> trouble </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[未知宽高垂直居中的2种方法]]></title>
+      <url>http://mangohouse.top/2016/12/03/%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">	<span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">			.cont&#123;</span></span><br><span class="line"><span class="undefined">				width: 200px;</span></span><br><span class="line"><span class="undefined">				height: 200px;</span></span><br><span class="line"><span class="undefined">				position: relative;</span></span><br><span class="line"><span class="undefined">				border: 1px solid #00CC7D;</span></span><br><span class="line"><span class="undefined">				margin: 10px;</span></span><br><span class="line"><span class="undefined">			&#125;</span></span><br><span class="line"><span class="undefined">			.cont div&#123;</span></span><br><span class="line"><span class="undefined">				width: 50%;</span></span><br><span class="line"><span class="undefined">				height: 50%;</span></span><br><span class="line"><span class="undefined">			&#125;</span></span><br><span class="line"><span class="undefined">			.one&#123;</span></span><br><span class="line"><span class="undefined">				position: absolute;</span></span><br><span class="line"><span class="undefined">				left: 0;</span></span><br><span class="line"><span class="undefined">				right: 0;</span></span><br><span class="line"><span class="undefined">				top: 0;</span></span><br><span class="line"><span class="undefined">				bottom: 0;</span></span><br><span class="line"><span class="undefined">				margin: auto;</span></span><br><span class="line"><span class="undefined">				background: #FF751A;</span></span><br><span class="line"><span class="undefined">			&#125;</span></span><br><span class="line"><span class="undefined">			.two&#123;</span></span><br><span class="line"><span class="undefined">				position: absolute;</span></span><br><span class="line"><span class="undefined">				left: 50%;</span></span><br><span class="line"><span class="undefined">				top: 50%;</span></span><br><span class="line"><span class="undefined">				-webkit-transform:translate(-50%,-50%);</span></span><br><span class="line"><span class="undefined">				transform:translate(-50%,-50%);</span></span><br><span class="line"><span class="undefined">				background: #11751A;</span></span><br><span class="line"><span class="undefined">			&#125;</span></span><br><span class="line"><span class="undefined">		</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cont"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"one"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cont"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"two"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> css学习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> css </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[windows下利用nodist安装多个版本的node]]></title>
+      <url>http://mangohouse.top/2016/12/02/windows%E4%B8%8B%E5%88%A9%E7%94%A8nodist%E5%AE%89%E8%A3%85%E5%A4%9A%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84node/</url>
+      <content type="html"><![CDATA[<p>好久，没有更新博客了，今天因为项目需要，需要在windows下使用多个版本的node，刚开始是想用nvmw的，nvmw虽然挺好用配置也简单，只需  <code>npm install -g nvmw</code><br>但是nvmv只能安装4.0以下的版本，后来找到了nodist，先下载 <a href="https://github.com/marcelklehr/nodist/releases/download/v0.8.7/NodistSetup-v0.8.7.exe" target="_blank" rel="noopener">https://github.com/marcelklehr/nodist/releases/download/v0.8.7/NodistSetup-v0.8.7.exe</a><br>安装完成后，找到并用编辑器打开cli.js，然后将distUrl、iojsDistUrl更换成淘宝镜像，（npm安装速度会有质的提升）如下：<br>var distUrl = ‘<a href="https://npm.taobao.org/mirrors/node&#39;" target="_blank" rel="noopener">https://npm.taobao.org/mirrors/node&#39;</a>;<br>var iojsDistUrl = ‘<a href="https://npm.taobao.org/mirrors/iojs&#39;" target="_blank" rel="noopener">https://npm.taobao.org/mirrors/iojs&#39;</a>;<br>然后打开命令行窗口，输入命令： npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a><br>然后nodist 加node的版本号就可以随意安装跟切换了，比如nodist 4.5.5,如未安装该版本会先安装，如已安装直接切换到当前版本</p>
+]]></content>
+      
+        <categories>
+            
+            <category> nodist </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> node,nodist </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[阿里云服务器重启导致网页打不开的问题]]></title>
+      <url>http://mangohouse.top/2016/10/13/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8D%E5%90%AF%E5%AF%BC%E8%87%B4%E7%BD%91%E9%A1%B5%E6%89%93%E4%B8%8D%E5%BC%80%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<p>今天早上去公司老板说发现公司的网站还有项目全部都打不开了，尼玛瞬间菊花一紧，然后马上开始看到底是什么情况，按照往常，我打开ftp启动了服务器，发现然并卵，然后再启了一次，还是没卵用。然后开始上网查资料，因为之前根本没接触过这个，只做前端，后台会点，但是不熟，网上查了半天也没解决方案，最后求助之前离职的后台同事，他也没说太清楚，只说比较麻烦，好吧，哥们只能自己开搞，中午吃完饭，又开始搞，没搞定，睡完午觉起来又搞，还是没搞定，问题我知道了，是因为阿里云更新配置后，服务器重启了，重启之后，里面的nginx没有启动，（要靠nginx配置引导）所以导致这个网站打不开，然后对着这个问题我开始重启nginx，但是重启不了，老是提示<br>nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)<br>nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)<br>nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)<br>nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</p>
+<p>nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)<br>nginx: [emerg] still could not bind()<br>我又开始找这个问题的解决方案，重启niginx ，/usr/local/nginx/sbin/nginx -s reload找了半天网上的方法也没卵用，网上说杀掉nginx的进程就行了，然后我试了，提示nginx: [alert] kill(2156, 1) failed (3: No such process)发现总是提示就在准备放弃了，坐等阿里云服务人员来搞的时候，我尝试了最后一次，试了<br>后来老板叫了一个.net的朋友过来还是没搞定，然后要我提交工单给阿里云，说把情况说的紧急些，好，按他说的我开始写工单求助，工单写完了，我开始等，但自己也在尝试，有上网查了下最后在这个<a href="http://www.cnblogs.com/toosuo/p/3571114.html" target="_blank" rel="noopener">http://www.cnblogs.com/toosuo/p/3571114.html</a></p>
+<p>Nginx [emerg]: bind() to 0.0.0.0:80 failed (98: Address already in use)</p>
+<p>使用命令关闭占用80端口的程序</p>
+<p>sudo fuser -k 80/tcp<br>找到了这个，试了下这条语句，诶，好了，搞定了。</p>
+<p>附录一些阿里云linux的操作代码：</p>
+<p>使用命令关闭占用80端口的程序</p>
+<p>sudo fuser -k 80/tcp</p>
+<ol>
+<li><p>查看80端口占用<br>netstat -ntpl</p>
+</li>
+<li><p>杀掉占用80端口的进程</p>
+</li>
+</ol>
+<p>kill -999 $pid</p>
+<p>开启nginx<br>service nginx start</p>
+<p>nginx的启动命令是：</p>
+<p>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+<h1 id="usr-local-nginx-sbin-nginx-s-reload"><a href="#usr-local-nginx-sbin-nginx-s-reload" class="headerlink" title="/usr/local/nginx/sbin/nginx -s  reload"></a>/usr/local/nginx/sbin/nginx -s  reload</h1><p>linux 下 apache启动、停止、重启命令</p>
+<p>本文假设你的apahce安装目录为/usr/local/apache，这些方法适合任何情况</p>
+<p>apahce启动命令：</p>
+<p>/usr/local/apache/bin/apachectl start apaceh</p>
+<p>apache停止命令</p>
+<p>/usr/local/apache/bin/apachectl stop</p>
+<p>apache重新启动命令：</p>
+<p>/usr/local/apache/bin/apachectl restart</p>
+<p>要在重启 Apache 服务器时不中断当前的连接，则应运行：</p>
+<p>/usr/local/sbin/apachectl graceful</p>
+<p>如果apache安装成为linux的服务的话，可以用以下命令操作：</p>
+<p>service httpd start 启动<br>service httpd restart 重新启动<br>service httpd stop 停止服务</p>
+<p>Linux系统为Ubuntu</p>
+<p>一、Start Apache Server /启动apache服务</p>
+<h1 id="etc-init-d-apache-startor"><a href="#etc-init-d-apache-startor" class="headerlink" title="/etc/init.d/apache startor"></a>/etc/init.d/apache startor</h1><p>$ sudo /etc/init.d/apache start</p>
+<p>二、 Restart Apache Server /重启apache服务</p>
+<h1 id="etc-init-d-apache-restartor"><a href="#etc-init-d-apache-restartor" class="headerlink" title="/etc/init.d/apache restartor"></a>/etc/init.d/apache restartor</h1><p>$ sudo /etc/init.d/apache restart</p>
+<p>三、Stop Apache Server /停止apache服务</p>
+<h1 id="etc-init-d-apache-stopor"><a href="#etc-init-d-apache-stopor" class="headerlink" title="/etc/init.d/apache stopor"></a>/etc/init.d/apache stopor</h1><p>$ sudo /etc/init.d/apache stop</p>
+<p>相关文章：<a href="http://shikezhi.com/html/2015/linux_0614/66422.html" target="_blank" rel="noopener">http://shikezhi.com/html/2015/linux_0614/66422.html</a></p>
+<p>阿里云服务器ECS(Ubuntu)搭建nginx服务器 详细步骤教程</p>
+<p>nginx: [alert] kill(1668, 1) failed (3: No such process)的解决办法及nginx服务常用命令总结<br><a href="http://www.bubuko.com/infodetail-1618909.html" target="_blank" rel="noopener">http://www.bubuko.com/infodetail-1618909.html</a></p>
+<p>阿里云服务器手动重启步骤介绍<br><a href="http://shikezhi.com/html/2015/linux_0614/66422.html" target="_blank" rel="noopener">http://shikezhi.com/html/2015/linux_0614/66422.html</a></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 总结 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[代码测试]]></title>
+      <url>http://mangohouse.top/2016/10/12/%E4%BB%A3%E7%A0%81%E6%B5%8B%E8%AF%95/</url>
+      <content type="html"><![CDATA[<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;  <span class="keyword">return</span> main();&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">! <span class="function"><span class="keyword">function</span> <span class="title">e</span>(<span class="params">t, r, o</span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">n</span>(<span class="params">a, c</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!r[a]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!t[a]) &#123;</span><br><span class="line">                <span class="keyword">var</span> u = <span class="string">"function"</span> == <span class="keyword">typeof</span> <span class="built_in">require</span> &amp;&amp; <span class="built_in">require</span>;</span><br><span class="line">                <span class="keyword">if</span> (!c &amp;&amp; u) <span class="keyword">return</span> u(a, !<span class="number">0</span>);</span><br><span class="line">                <span class="keyword">if</span> (i) <span class="keyword">return</span> i(a, !<span class="number">0</span>);</span><br><span class="line">                <span class="keyword">var</span> f = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Cannot find module '"</span> + a + <span class="string">"'"</span>);</span><br><span class="line">                <span class="keyword">throw</span> f.code = <span class="string">"MODULE_NOT_FOUND"</span>, f</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> s = r[a] = &#123;</span><br><span class="line">                exports: &#123;&#125;</span><br><span class="line">            &#125;;</span><br><span class="line">            t[a][<span class="number">0</span>].call(s.exports, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> r = t[a][<span class="number">1</span>][e];</span><br><span class="line">                <span class="keyword">return</span> n(r ? r : e)</span><br><span class="line">            &#125;, s, s.exports, e, t, r, o)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> r[a].exports</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="string">"function"</span> == <span class="keyword">typeof</span> <span class="built_in">require</span> &amp;&amp; <span class="built_in">require</span>, a = <span class="number">0</span>; a &lt; o.length; a++) n(o[a]);</span><br><span class="line">    <span class="keyword">return</span> n</span><br><span class="line">&#125;(&#123;</span><br><span class="line">    <span class="number">1</span>: [<span class="function"><span class="keyword">function</span>(<span class="params">e, t, r</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> o;</span><br><span class="line">        o = angular.module(<span class="string">"controllers.app.settingofficialaccounts"</span>, []), o.controller(<span class="string">"settingofficialaccountsController"</span>, [<span class="string">"$scope"</span>, <span class="string">"$location"</span>, <span class="string">"storageServices"</span>, <span class="string">"loginStatusServices"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e, t, r, o</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> n, i, a;</span><br><span class="line">            <span class="keyword">return</span> n = <span class="built_in">JSON</span>.parse(localStorage.getItem(<span class="string">"BIGE_user"</span>)), i = n.companyInfo, a = <span class="built_in">JSON</span>.parse(i.wxinfo), e.state = i.state, e.wxauthorize = !<span class="number">1</span>, e.authorizeresult = !<span class="number">1</span>, e.wxnickname = a.nick_name, e.wxaccount = a.alias, <span class="string">""</span> === e.wxaccount &amp;&amp; (e.wxaccount = <span class="string">"未设置微信号"</span>), e.servicetypeinfo = a.servicetypeinfo, e.verifytypeinfo = a.verifytypeinf, <span class="number">1</span> === e.state ? (e.authorizeresult = !<span class="number">0</span>, e.wxauthorize = !<span class="number">1</span>) : (e.authorizeresult = !<span class="number">1</span>, e.wxauthorize = !<span class="number">0</span>), <span class="number">2</span> === e.servicetypeinfo &amp;&amp; <span class="number">-1</span> !== e.verifytypeinfo ? e.wxaccounttype = <span class="string">"认证服务号"</span> : e.wxaccounttype = <span class="string">"非认证服务号"</span></span><br><span class="line">        &#125;])</span><br><span class="line">    &#125;, &#123;&#125;]</span><br><span class="line">&#125;, &#123;&#125;, [<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取对象属性个数</span></span><br><span class="line">objLen = <span class="built_in">Object</span>.getOwnPropertyNames(Obj).length</span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> 代码测试 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 代码测试 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[转：去广州听小龙分享产品思路]]></title>
+      <url>http://mangohouse.top/2016/10/12/%EF%BC%88%E8%BD%AC%EF%BC%89%E5%B9%BF%E5%B7%9E%E5%90%AC%E5%B0%8F%E9%BE%99%E5%88%86%E4%BA%AB%E4%BA%A7%E5%93%81%E6%80%9D%E8%B7%AF/</url>
+      <content type="html"><![CDATA[<p>去广州听小龙分享产品思路，虽然辛苦，却非常值得，仅以小龙的话开头：“我所说的，都是错的”。</p>
+<p>　　一个笑话：为什么苹果的手机只有一个按钮？</p>
+<p>　　- 一个按钮容易坏——你懂得</p>
+<p>　　- 白底+按钮，就是马桶→iPhone的主设计师原来设计厨卫产品</p>
+<p>　　1.为什么简单是美？</p>
+<p>　　- 如果做到最简化，就可以让别人无法超越</p>
+<p>　　- 上帝建立简单规则，让世界演化</p>
+<p>　　- 任何一个好功能，不需要任何文字来解释</p>
+<p>　　案例：微信设计过程的分享绝对是经典，在小龙谦逊的叙述中，每个人都可以享受到那种有收获的“爽”。</p>
+<p>　　2.产品定位和设计</p>
+<p>　　- 实验，而非策划</p>
+<p>　　- 设计，而非功能</p>
+<p>　　- 功能是满足需求，定位是满足心理诉求；功能很难取胜，定位可以</p>
+<p>　　3.产品的人性</p>
+<p>　　- 你说我是错的，那你最好证明你是对的</p>
+<p>　　- 我们本身不是低龄的人，为什么要做成低龄化的产品</p>
+<p>　　- 隐藏技术细节</p>
+<p>　　案例：微信通知邮件的末位，署名一个真实的产品经理</p>
+<p>　　4.只做一件事情</p>
+<p>　　- 如果核心功能没有活力，增加再多辅助功能都于事无补</p>
+<p>　　- 每增加一个功能，都带来了长期的产品维护成本</p>
+<p>　　案例：两行按钮很不好，需要用户思考</p>
+<p>　　5.如何获取用户心理？</p>
+<p>　　- 逻辑推理，不如CE用户，感知趋势；数据不一定对</p>
+<p>　　- 产品要让自己用得爽起来，要用傻瓜心态来体验产品</p>
+<p>　　- 每周看1000篇帖子或微博、100篇博客，做10个CE</p>
+<p>　　6.要避免的习惯</p>
+<p>　　- 产品之初就开始拉动</p>
+<p>　　- 用户要什么就给什么</p>
+<p>　　- 定义复杂的逻辑和形态</p>
+<p>　　不要把跟随做为一种策略，不要在乎一城一地的得失</p>
+<p>　　7.PM的心态</p>
+<p>　　- 求知，而非任务；辩驳，不为自尊心而战</p>
+<p>　　- 时刻怀疑自己的偏执，因为那可能是错的</p>
+<p>　　- 面向两年后的环境来做设计</p>
+<p>　　三个多小时的分享过程，小龙好像有些疲惫，但仍然尽量照顾到每个细节。</p>
+<p>　　而在他信手拈来的观点中，隐藏着对本质的反复思考。</p>
+<p>　　有文艺范、有完美心，懂男人、懂女人，这就是曾经的程序员allenzhang。</p>
+<p>　　PS. 感谢@wang把我叫了去，face2face的交流让人体会深刻，诚叹知易行难。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 转载 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 转载 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[前端技术总结]]></title>
+      <url>http://mangohouse.top/2016/10/12/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/</url>
+      <content type="html"><![CDATA[<p>1.选择器的命名规范：<br>    当我们在对一个元素的ID选择器还是类选择器命名时，我们应该遵循“它是什么（what it is）”而不是“它是什么样子的（what it looks like）”的原则进行命名，根据它的职能命名。</p>
+<p>2.小屏适配问题：<br>    考略到小屏幕适配，宽度，字体用百分比或者rem（1rem = 10px），而不是px；<br>    【干货】前端rem单位的正确使用姿势：<a href="https://my.oschina.net/thinkive/blog/669942" target="_blank" rel="noopener">https://my.oschina.net/thinkive/blog/669942</a></p>
+<p>3.controller，service，directive的使用，目前来看大部分的逻辑都写在controller里面，这并不是angular的推荐写法<br>    directive一般用来写一些通用的组件，当需要扩充原来html标签的功能的时候用directive。<br>    controller处理特定页面的逻辑，控制器要简单，不需要放置太多的逻辑，它负责视图和模型的连接。<br>    factory/service 是单例模式，service是对factory的封装，相应的还有constant和value方法。一般公用的静态方法<br>    Controller 不应该直接引用 DOM，而应该控制 view 的行为。例如“如果用户操作了 X，应该发生什么事情”，“我从哪里可以获得 X？”<br>    Service 在大部分情况下也不应该直接引用 DOM，它应该是一个单例（singletons），独立于界面，与 view 的逻辑无关。它的角色只是“做 X 操作”。<br>    DOM 操作应该放在 directives 里面。<br>    相关文章：<a href="http://kirkbushell.me/when-to-use-directives-controllers-or-services-in-angular/" target="_blank" rel="noopener">http://kirkbushell.me/when-to-use-directives-controllers-or-services-in-angular/</a></p>
+<p>4.能用angular解决的问题，就不要用Jquery<br>    jQuery不是必须的，不要带着JQ的思想来学习Angular。即使是我们的页面上已经有jQuery，也没有理由一定要在这里使用它；我们可以简单的使用angular.element，而且就算在一个没有jQuery的项目中我们的组件仍然可以工作。即使我们假设为了让这个指令工作，jQuery是必须的，如果jqury被加载，那么jqLite（angler.element）一定会使用jQuery。所以我们不需要使用$，我们可以使用angular.element。jqLite元素不需要被包裹在$里，传递给link函数的element已经是一个jQuery元素！<br>    相关文章：<a href="http://blog.jobbole.com/46589/" target="_blank" rel="noopener">http://blog.jobbole.com/46589/</a></p>
+<p>5.变量方法命名：<br>    变量方法命名尽量写全，按照变量的功能进行命名，如果要缩写，也是要用大家都有共识的缩写。不要有tree1， tree2这种命名</p>
+<p>6.dead code:<br>    不用的代码就删掉，不要注释着放在那里［需要的，请加todo注明］</p>
+<p>7.不能有过长的方法定义：<br>    方法定义要简洁概要，一个方法只做一件事情。如果太长，采用提取方法的方式解决。</p>
+<p>8.不能有过长的文件：<br>    不能有过长的文件，如果过长，那一定是没有遵循单一职责原则。</p>
+<p>9.页面参数传递：<br>    在页面间进行参数传递时，不要传整个对象，宁愿新请求一个http，使用localStorage传递。</p>
+<p>10.插件的引用规范：<br>    angualr插件&gt;jquery插件<br>    尽量少使用jQuery。当你有个问题已经知道怎么用jQuery来解决的时候，在你将手伸向$的时候，试试能不能在Angular.js的规范内解决。</p>
+<p>11.移动端加载更多规则：<br>    ［分享，文档说明］<br>    相信很多前端都遇到过这样的需求，在一个页面中预加载一个列表数据，当浏览器滚动到底部之后加载更多数据，然后循环往复这个操作。不知道大家有没有想过这个问题，设备的内存是有限的，而操作系统分配给每一个程序的内存资源也是有限制的，假如我们一直把这个列表加载下去，会出现什么样的问题？<br>    其实我发现这个加载更多带来的性能瓶颈，并不是从加载更多这个功能本身得知的。而是从其他方面发现的。<br>    图片改为background；<br>    滚出视野范围隐藏图片；<br>    把滚出视野的dom元素都隐藏不就行了，不能用opacity，没意义，不能用display:none，影响高度，计算又带来代码复杂度的提升，怎么办呢？visibility:hidden！<br>    在web前端制作加载更多数据的场景中，尤其是在移动端，内存资源非常珍贵，一些简单的优化都可能带来性能提升，一定要注意。<br>    img src 比 background 方式展示图片，使用到的内存资源可能会更多；<br>    移动端的内存是有限的，在进行代码设计是要充分考虑有可能带来的性能瓶颈。<br>    图片很浪费内存！要小心！ visibility:hidden, display:none 都可以节约内存<br>    相关文章：<a href="https://segmentfault.com/a/1190000002757856" target="_blank" rel="noopener">https://segmentfault.com/a/1190000002757856</a></p>
+<p>12.移动端是否使用Ionic现有组件：<br>    具体情况具体分析，如果有优秀的并且适合项目开发的Ionic组件可以使用。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> angular </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> angular </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[angular表单验证规范]]></title>
+      <url>http://mangohouse.top/2016/10/12/angular%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/</url>
+      <content type="html"><![CDATA[<p>表单验证规范<br>    表单验证主要用在信息设置模块，还有渠道管理模块的编辑渠道，新建、编辑分类，组织架构添加、编辑员工，新建编辑部门。<br>    现在项目中的表单验证有好几种，项目中引入了angular-ui-form-validation.js这个库，但是只有在设置个人信息页里用到了，在渠道管理里面，表单验证<br>其他的表单验证都是开发人员自己定的，我们需要统一一种验证方式，angular有其自带的一套表单验证规则，可以参考下面的Demo：</p>
+<p>Angular 的表单属性 $valid, $invalid, $pristine, $dirty</p>
+<pre><code>Angular 提供了有关表单的属性来帮助我们验证表单. 他们给我们提供了各种有关一个表单及其输入的信息，并且应用到了表单和输入.
+属性类
+描述
+$valid  ng-valid    Boolean 告诉我们这一项当前基于你设定的规则是否验证通过
+$invalid    ng-invalid  Boolean 告诉我们这一项当前基于你设定的规则是否验证未通过
+$pristine   ng-pristine Boolean 如果表单或者输入框没有使用则为True
+$dirty  ng-dirty    Boolean 如果表单或者输入框有使用到则为True
+Angular 也提供了有关表单及其输入框的类，以便你能够依据每一个状态设置其样式.
+</code></pre><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"//cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">                        body</span></span><br><span class="line"><span class="undefined">                        &#123;</span></span><br><span class="line"><span class="undefined">                            padding-top:30px;</span></span><br><span class="line"><span class="undefined">                        &#125;</span></span><br><span class="line"><span class="undefined">                    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">                 <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/angular.js/1.5.8/angular.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span>=<span class="string">"validationApp"</span> <span class="attr">ng-controller</span>=<span class="string">"mainController"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-sm-8 col-sm-offset-2"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page-header"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">                        AngularJS Form Validation</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">"userForm"</span>  <span class="attr">novalidate</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span> <span class="attr">ng-class</span>=<span class="string">"&#123; 'has-error' : userForm.name.$invalid &amp;&amp; !userForm.name.$pristine &#125;"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">                            Name</span><br><span class="line">                        <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">ng-model</span>=<span class="string">"name"</span> <span class="attr">required</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ng-model-options</span>=<span class="string">"&#123; updateOn: 'blur' &#125;"</span> /&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"error"</span> <span class="attr">ng-show</span>=<span class="string">"userForm.name.$invalid &amp;&amp; !userForm.name.$pristine"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">p</span>&gt;</span>try again<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">                            Username</span><br><span class="line">                        <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">ng-maxlength</span>=<span class="string">"8"</span> <span class="attr">ng-minlength</span>=<span class="string">"3"</span> <span class="attr">ng-model</span>=<span class="string">"username"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ng-model-options</span>=<span class="string">"&#123; updateOn: 'blur' &#125;"</span>  <span class="attr">required</span>/&gt;</span></span><br><span class="line">                       <span class="comment">&lt;!--  &lt;div class="error" ng-show=""&gt;</span></span><br><span class="line"><span class="comment">                            &lt;p&gt;it is required try again&lt;/p&gt;</span></span><br><span class="line"><span class="comment">                        &lt;/div&gt; --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"error"</span> <span class="attr">ng-show</span>=<span class="string">"userForm.username.$error.minlength"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">p</span>&gt;</span>too short try again<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"error"</span> <span class="attr">ng-show</span>=<span class="string">"userForm.username.$error.maxlength "</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">p</span>&gt;</span>too long try again<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">                            Email</span><br><span class="line">                        <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">ng-model</span>=<span class="string">"email"</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">ng-model-options</span>=<span class="string">"&#123; updateOn: 'blur' &#125;"</span>  <span class="attr">required</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"error"</span> <span class="attr">ng-show</span>=<span class="string">"userForm.email.$invalid &amp;&amp; !userForm.email.$pristine"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">p</span>&gt;</span>not a email address<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">ng-disabled</span>=<span class="string">"userForm.$invalid"</span> <span class="attr">ng-click</span>=<span class="string">"submitForm(userForm.$valid)"</span>&gt;</span></span><br><span class="line">                        Submit</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code>    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    <span class="keyword">var</span> validationApp = angular.module(<span class="string">'validationApp'</span>, []);</span><br><span class="line">    validationApp.controller(<span class="string">'mainController'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        $scope.submitForm = <span class="function"><span class="keyword">function</span>(<span class="params">isValid</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (isValid) &#123;</span><br><span class="line">                alert(<span class="string">'our form is amazing'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                alert(<span class="string">'our form is not amazing'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log($scope)</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+&lt;/html&gt;
+</code></pre><p><code>`</code><br>相关文章：<a href="https://scotch.io/tutorials/angularjs-form-validation，https://docs.angularjs.org/guide/forms#" target="_blank" rel="noopener">https://scotch.io/tutorials/angularjs-form-validation，https://docs.angularjs.org/guide/forms#</a>!</p>
+]]></content>
+      
+        <categories>
+            
+            <category> angular </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> angular </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[前端注释规范]]></title>
+      <url>http://mangohouse.top/2016/10/12/%E5%89%8D%E7%AB%AF%E6%B3%A8%E9%87%8A%E8%A7%84%E8%8C%83/</url>
+      <content type="html"><![CDATA[<p>1.对于代码中特殊用途的变量、存在临界值、函数中使用的hack、使用了某种算法或思路等需要进行注释描述；</p>
+<p>2.建议加入开发者个人信息及最后修改时间注释；</p>
+<p>3.文件注释位于文件的最前面，应包括文件的以下信息：概要说明及版本（必须）项目地址（开源组件必须）版权声明（必须）开源协议（开源组件必须）版本号（必须）修改时间（必须），以ISO格式表示（可使用Sublime Text的InsertDate插件插入）文件注释必须全部以英文字符表示，并存在于文件的开发版本与生产版本中。例如：</p>
+<p>4.如果文件内包含了一些开源组件，则必须在文件注释中进行说明。例如：</p>
+<p>5.普通注释<br>  普通注释是为了帮助开发者和阅读者更好地理解程序，不会出现在API文档中。普通注释的使用需遵循以下规定。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">   总是在单行注释符后留一个空格。例如：</span><br><span class="line">   <span class="comment">// this is comment</span></span><br><span class="line"></span><br><span class="line">   总是在多行注释的结束符前留一个空格（使星号对齐）。例如：</span><br><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line">   不要把注释写在多行注释的开始符、结束符所在行。例如：</span><br><span class="line">   <span class="comment">/* start</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   end */</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment">   here is line 1</span></span><br><span class="line"><span class="comment">   here is line 2</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">   不要编写无意义的注释。例如：</span><br><span class="line">   <span class="comment">// 初始化value变量为0</span></span><br><span class="line">   <span class="keyword">var</span> value = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   如果某段代码有功能未实现，或者有待完善，必须添加<span class="string">"TODO"</span>标记，<span class="string">"TODO"</span>前后应留一个空格。例如：</span><br><span class="line">   <span class="comment">// TODO 未处理IE6-8的兼容性</span></span><br><span class="line">       <span class="function"><span class="keyword">function</span> <span class="title">setOpacity</span>(<span class="params">node, val</span>) </span>&#123;</span><br><span class="line">           node.style.opacity = val;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"><span class="number">6.</span>文档注释</span><br><span class="line">文档注释将会以预定格式出现在API文档中。它以<span class="string">"/**"</span>开头，以<span class="string">"*/"</span>结束，其间的每一行均以<span class="string">"*"</span>开头（均与开始符的第一个<span class="string">"*"</span>对齐），且注释内容与<span class="string">"*"</span>间留一个空格。例如：</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * comment</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * @ignore  =====================================================================================</span></span><br><span class="line"><span class="comment">   * @fileoverview 该文档主要完成主要任务是……</span></span><br><span class="line"><span class="comment">   * @author  abcdefg@163.com</span></span><br><span class="line"><span class="comment">   * @version 1.0.0</span></span><br><span class="line"><span class="comment">   * @ignore  created in 2013-10-11</span></span><br><span class="line"><span class="comment">   * @ignore  depend Library jQuery</span></span><br><span class="line"><span class="comment">   * @ignore  =====================================================================================</span></span><br><span class="line"><span class="comment">   */</span></span><br></pre></td></tr></table></figure></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端注释规范 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> one </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
+</search>
