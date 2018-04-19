@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title><![CDATA[CocosCreator学习总结]]></title>
+      <url>http://mangohouse.top/2017/10/12/CocosCreator%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</url>
+      <content type="html"><![CDATA[<hr>
+<p></p><h1>CocosCreator学习总结（一）</h1><p></p>
+<p><br>  因为最近刚好在对公司的H5游戏产品做重构，经过考虑后选择了cocoscreator，所以这段时间都在学习cocos2d.js不得不说，cocoscreator还是挺好用的，上手很简单，可以很快速的构建自己的游戏，ui编辑也很方便，做动画系统，序列帧动画还是很好用的，操作也简单。<br></p>
+
+<p><br>不过缺的也是有的，就是性能方面还是稍微有点薄弱，特别是节点渲染很多的时候会帧率下降会很快，不过稍加注意还是可以避免的<br></p><br><p><br>cocos的mask组件如果在同一个页面有很多节点的情况下使用，对性能影响很大，帧率会很低，所以不推荐在需要绑定mask组件的节点很多的情况下使用，画图系统也是对性能影响也很大，尽量不大量使用，能用贴图的就尽量用贴图。<br></p>
+
+]]></content>
+      
+        <categories>
+            
+            <category> cocos </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> cocos </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[注意事项]]></title>
       <url>http://mangohouse.top/2017/02/18/css%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/</url>
       <content type="html"><![CDATA[<p>页面内容较多注意重复命名类名</p>
@@ -49,6 +75,27 @@
     </entry>
     
     <entry>
+      <title><![CDATA[基于vue-cli，vue+vuex+elementUI+webpack实践.md]]></title>
+      <url>http://mangohouse.top/2017/02/13/%E5%9F%BA%E4%BA%8Evue-cli%EF%BC%8Cvue+vuex+elementUI+webpack%E5%AE%9E%E8%B7%B5/</url>
+      <content type="html"><![CDATA[<p>项目地址：<a href="https://github.com/mango23/vuepro" target="_blank" rel="noopener">https://github.com/mango23/vuepro</a><br>本项目是基于vue-cli进行修改推展的一个vue工程构建demo</p>
+<h2 id="在原基础上加上了vuex，mock配置ajax虚拟数据，引入了饿了么的elementUI组件库，以及一些基本的vue实例"><a href="#在原基础上加上了vuex，mock配置ajax虚拟数据，引入了饿了么的elementUI组件库，以及一些基本的vue实例" class="headerlink" title="在原基础上加上了vuex，mock配置ajax虚拟数据，引入了饿了么的elementUI组件库，以及一些基本的vue实例"></a>在原基础上加上了vuex，mock配置ajax虚拟数据，引入了饿了么的elementUI组件库，以及一些基本的vue实例</h2>]]></content>
+      
+        <categories>
+            
+            <category> vue,vuex </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> vue,vuex </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[2017给自己的规划]]></title>
       <url>http://mangohouse.top/2017/02/13/2017%E8%AE%A1%E5%88%92/</url>
       <content type="html"><![CDATA[<hr>
@@ -68,27 +115,6 @@
         <tags>
             
             <tag> 近期规划 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[基于vue-cli，vue+vuex+elementUI+webpack实践.md]]></title>
-      <url>http://mangohouse.top/2017/02/13/%E5%9F%BA%E4%BA%8Evue-cli%EF%BC%8Cvue+vuex+elementUI+webpack%E5%AE%9E%E8%B7%B5/</url>
-      <content type="html"><![CDATA[<p>项目地址：<a href="https://github.com/mango23/vuepro" target="_blank" rel="noopener">https://github.com/mango23/vuepro</a><br>本项目是基于vue-cli进行修改推展的一个vue工程构建demo</p>
-<h2 id="在原基础上加上了vuex，mock配置ajax虚拟数据，引入了饿了么的elementUI组件库，以及一些基本的vue实例"><a href="#在原基础上加上了vuex，mock配置ajax虚拟数据，引入了饿了么的elementUI组件库，以及一些基本的vue实例" class="headerlink" title="在原基础上加上了vuex，mock配置ajax虚拟数据，引入了饿了么的elementUI组件库，以及一些基本的vue实例"></a>在原基础上加上了vuex，mock配置ajax虚拟数据，引入了饿了么的elementUI组件库，以及一些基本的vue实例</h2>]]></content>
-      
-        <categories>
-            
-            <category> vue,vuex </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> vue,vuex </tag>
             
         </tags>
         
