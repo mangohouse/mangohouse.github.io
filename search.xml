@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title><![CDATA[关于zepto.fullpage.js的一些经验总结]]></title>
+      <url>http://mangohouse.top/2018/04/20/%E5%85%B3%E4%BA%8Ezepto.fullpage.js%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/</url>
+      <content type="html"><![CDATA[<hr>
+<p></p><h1>关于zepto.fullpage.js的一些经验总结</h1><p></p>
+<p><br>因为最近在做一个H5的小页面，页面需要用到整屛滑动，因为以前用过zepto.fullpage.js，所以就用它来做了<br>不过在做的过程中也发现了几个小问题<br></p><br><p>1.在安卓手机下，页面中如果有input输入框，只要输入框获取了页面焦点，滑屏事件就会失效，但是滑动事件是有效的，只是不能整屛滑动事件就失效了，<br>解决方案是在安卓手机中，使用swipeUp还有swipeDown去控制fullpage的nextpage与prevpage。<br><br></p>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'.class'</span>).swipeUp(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    $.fn.fullpage.moveNext();</span><br><span class="line">&#125;)</span><br><span class="line">$(<span class="string">'.class'</span>).swipeUp(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    $.fn.fullpage.movePrev();;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> cocos </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> zepto </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[CocosCreator学习总结]]></title>
       <url>http://mangohouse.top/2017/10/12/CocosCreator%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<hr>

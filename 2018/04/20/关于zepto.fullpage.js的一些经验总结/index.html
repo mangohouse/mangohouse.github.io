@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="welcome to my mangohouse" />
+  <meta name="keywords" content="zepto," />
 
 
 
@@ -92,16 +92,18 @@
 
 
 
-<meta name="description" content="mango的前端小站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="mangohouse">
-<meta property="og:url" content="http://mangohouse.top/archives/2016/10/index.html">
+<meta name="description" content="cocos creator的一些使用经验还有注意事项">
+<meta name="keywords" content="zepto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于zepto.fullpage.js的一些经验总结">
+<meta property="og:url" content="http://mangohouse.top/2018/04/20/关于zepto.fullpage.js的一些经验总结/index.html">
 <meta property="og:site_name" content="mangohouse">
-<meta property="og:description" content="mango的前端小站">
+<meta property="og:description" content="cocos creator的一些使用经验还有注意事项">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-19T13:30:56.180Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mangohouse">
-<meta name="twitter:description" content="mango的前端小站">
+<meta name="twitter:title" content="关于zepto.fullpage.js的一些经验总结">
+<meta name="twitter:description" content="cocos creator的一些使用经验还有注意事项">
 
 
 
@@ -122,10 +124,10 @@
 
 
 
-  <link rel="canonical" href="http://mangohouse.top/archives/2016/10/"/>
+  <link rel="canonical" href="http://mangohouse.top/2018/04/20/关于zepto.fullpage.js的一些经验总结/"/>
 
 
-  <title> 归档 | mangohouse </title>
+  <title> 关于zepto.fullpage.js的一些经验总结 | mangohouse </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -146,7 +148,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -277,251 +279,202 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 15 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于zepto.fullpage.js的一些经验总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-04-19T21:18:23Z" content="2018-04-19">
+              2018-04-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/cocos/" itemprop="url" rel="index">
+                    <span itemprop="name">cocos</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/04/20/关于zepto.fullpage.js的一些经验总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/20/关于zepto.fullpage.js的一些经验总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <hr>
+<p></p><h1>关于zepto.fullpage.js的一些经验总结</h1><p></p>
+<p><br>因为最近在做一个H5的小页面，页面需要用到整屛滑动，因为以前用过zepto.fullpage.js，所以就用它来做了<br>不过在做的过程中也发现了几个小问题<br></p><br><p>1.在安卓手机下，页面中如果有input输入框，只要输入框获取了页面焦点，滑屏事件就会失效，但是滑动事件是有效的，只是不能整屛滑动事件就失效了，<br>解决方案是在安卓手机中，使用swipeUp还有swipeDown去控制fullpage的nextpage与prevpage。<br><br></p>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'.class'</span>).swipeUp(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    $.fn.fullpage.moveNext();</span><br><span class="line">&#125;)</span><br><span class="line">$(<span class="string">'.class'</span>).swipeUp(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    $.fn.fullpage.movePrev();;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/avatar.jpg" alt="mango wechat" style="width: 200px; max-width: 100%;"/>
+    <div>喝杯白酒，交个朋友</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/1.jpg" alt="mango WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
       
       
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/2.jpg" alt="mango Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
+    </div>
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/zepto/" rel="tag">#zepto</a>
+          
+        </div>
+      
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/13/阿里云服务器重启导致网页打不开的问题/" itemprop="url">
-              
-                <span itemprop="name">阿里云服务器重启导致网页打不开的问题</span>
-              
-            </a>
-        
-      </h1>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/12/CocosCreator学习总结/" rel="next" title="CocosCreator学习总结">
+                <i class="fa fa-chevron-left"></i> CocosCreator学习总结
+              </a>
+            
+          </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-13T15:00:30Z"
-              content="2016-10-13" >
-          10-13
-        </time>
-      </div>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
+    <div class="post-spread">
       
+        <div class="ds-share flat" data-thread-key="2018/04/20/关于zepto.fullpage.js的一些经验总结/"
+     data-title="关于zepto.fullpage.js的一些经验总结"
+     data-content=""
+     data-url="http://mangohouse.top/2018/04/20/关于zepto.fullpage.js的一些经验总结/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
       
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/12/代码测试/" itemprop="url">
-              
-                <span itemprop="name">代码测试</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-12T13:49:30Z"
-              content="2016-10-12" >
-          10-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/12/（转）广州听小龙分享产品思路/" itemprop="url">
-              
-                <span itemprop="name">转：去广州听小龙分享产品思路</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-11T19:05:30Z"
-              content="2016-10-11" >
-          10-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/12/前端技术总结/" itemprop="url">
-              
-                <span itemprop="name">前端技术总结</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-11T18:47:00Z"
-              content="2016-10-11" >
-          10-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/12/angular表单验证/" itemprop="url">
-              
-                <span itemprop="name">angular表单验证规范</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-11T16:49:30Z"
-              content="2016-10-11" >
-          10-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/12/前端注释规范/" itemprop="url">
-              
-                <span itemprop="name">前端注释规范</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-11T16:43:36Z"
-              content="2016-10-11" >
-          10-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-
+    </div>
+  </div>
 
 
           </div>
@@ -529,6 +482,18 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/04/20/关于zepto.fullpage.js的一些经验总结/"
+           data-title="关于zepto.fullpage.js的一些经验总结" data-url="http://mangohouse.top/2018/04/20/关于zepto.fullpage.js的一些经验总结/">
+      </div>
+      <div class="vister">最近访客:</div>
+      <div class="ds-recent-visitors" data-num-items="28"
+      data-avatar-size="42" id="ds-recent-visitors"></div>
+
+    
+  </div>
+
 
 
         </div>
@@ -549,8 +514,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -654,6 +628,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">关于zepto.fullpage.js的一些经验总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -773,11 +758,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
 
 
   
