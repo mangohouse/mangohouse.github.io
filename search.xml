@@ -11,11 +11,13 @@
 <p><br>因为最近在做一个H5的小页面，页面需要用到整屛滑动，因为以前用过zepto.fullpage.js，所以就用它来做了<br>不过在做的过程中也发现了几个小问题<br></p><br><p>1.在安卓手机下，页面中如果有input输入框，只要输入框获取了页面焦点，滑屏事件就会失效，但是滑动事件是有效的，只是不能整屛滑动事件就失效了，<br>解决方案是在安卓手机中，使用swipeUp还有swipeDown去控制fullpage的nextpage与prevpage。<br><br></p>
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'.class'</span>).swipeUp(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    $.fn.fullpage.moveNext();</span><br><span class="line">&#125;)</span><br><span class="line">$(<span class="string">'.class'</span>).swipeUp(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    $.fn.fullpage.movePrev();;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><br>使用了zeptofullpage.js后如果页面有overFlow:scroll，sroll会失效，出现不能滑动滚动栏的情况，<br>解决方案是在该节点激活是时设置<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.fn.fullpage.stop();</span><br></pre></td></tr></table></figure><br><br>关闭全屏滚动事件<br></p>
+
 ]]></content>
       
         <categories>
             
-            <category> cocos </category>
+            <category> zepto,zeptoFullPage.js </category>
             
         </categories>
         
